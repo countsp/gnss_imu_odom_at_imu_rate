@@ -1,34 +1,56 @@
-2024.11.6(eskf_odom)
 参考资料：
+
 https://zhuanlan.zhihu.com/p/627857398?eqid=c665abc3000191590000000364706c54
+
 源码链接：
+
 https://gitee.com/dawanzi98/gnss_imu_odom_at_imu_rate
-安装依赖
+
+**安装依赖**
+
 sudo apt-get install libpcl-dev libgeographic-dev
 
-编译package
+**编译package**
+```
 mkdir -p ~/eskf/src
 cd ~/eskf/src
 git clone https://gitee.com/dawanzi98/gnss_imu_odom_at_imu_rate.git
 cd ../..
 catkin_make
+```
+**报错1：**
 
-报错1：
 GeographicLib Not Found
+
 解决：
+
 使用命令在Ubuntu上安装Geographiclib库
+```
 sudo apt_get install libgeographic-dev
+```
+
 然后在CMakeLists.txt文件的顶部添加
+
 list(APPEND CMAKE_MODULE_PATH "/usr/share/cmake/geographiclib")
+
 告诉CMake在查找包时也搜索/usr/share/cmake/geographiclib目录。
-报错2：
+
+**报错2：**
+
 fatal error: color_terminal/color_terminal.hpp: No such file or directory
+
  2 | #include <color_terminal/color_terminal.hpp>
+ 
 解决：
+
 gnss_imu_fusion.cpp中
+
 注释掉
-// hj #include <color_terminal/color_terminal.hpp>
-运行
+
+// #include <color_terminal/color_terminal.hpp>
+
+**运行**
+
 ~/eskf$ source devel/setup.bash
 ~/eskf$ roslaunch gnss_imu_fusion kitti.launch
 消息格式
