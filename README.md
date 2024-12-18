@@ -53,7 +53,10 @@ gnss_imu_fusion.cpp中
 
 ~/eskf$ source devel/setup.bash
 ~/eskf$ roslaunch gnss_imu_fusion kitti.launch
-消息格式
+
+
+**消息格式**
+```
 namespace sensor_msgs
 {
   struct Imu
@@ -98,3 +101,4 @@ odom_message.pose.pose.orientation.y = q.y();
 odom_message.pose.pose.orientation.z = q.z();
 
 odom_pub.publish(odom_message);
+```
